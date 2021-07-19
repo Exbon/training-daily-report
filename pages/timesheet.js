@@ -385,7 +385,7 @@ const Timesheet = () => {
         //     array_employeeElement
         //   ) => {}
         // );
-
+        let timesheetIDArray = [];
         for (let i = 0; i < tempDataView.length; i++) {
           let timesheetID = 0;
           await axios({
@@ -432,6 +432,7 @@ const Timesheet = () => {
             },
           }).then(result => {
             timesheetID = result.data.result.recordsets[0][0].TimesheetID;
+            timesheetIDArray.push(timesheetID);
           });
 
           for (let j = 0; j < data.length; j++) {
@@ -481,15 +482,17 @@ const Timesheet = () => {
 
                 if (k == param_CalculateHours.length - 1) {
                   const myFunction = async () => {
-                    axios({
-                      method: "post",
-                      url: `/api/timesheets/calculate-daily-earning`,
-                      timeout: 8000, // 5 seconds timeout
-                      headers: {},
-                      data: {
-                        TimesheetID: parseInt(timesheetID),
-                      },
-                    });
+                    for (let l = 0; l < timesheetIDArray.length; l++) {
+                      axios({
+                        method: "post",
+                        url: `/api/timesheets/calculate-daily-earning`,
+                        timeout: 8000, // 5 seconds timeout
+                        headers: {},
+                        data: {
+                          TimesheetID: parseInt(timesheetIDArray[l]),
+                        },
+                      });
+                    }
                   };
 
                   setTimeout(() => {
@@ -1274,7 +1277,7 @@ const Timesheet = () => {
         //     array_employeeElement
         //   ) => {}
         // );
-
+        let timesheetIDArray = [];
         for (let i = 0; i < tempDataView.length; i++) {
           let timesheetID = 0;
           await axios({
@@ -1321,6 +1324,7 @@ const Timesheet = () => {
             },
           }).then(result => {
             timesheetID = result.data.result.recordsets[0][0].TimesheetID;
+            timesheetIDArray.push(timesheetID);
           });
 
           for (let j = 0; j < data2.length; j++) {
@@ -1369,15 +1373,17 @@ const Timesheet = () => {
                 });
                 if (k == param_CalculateHours.length - 1) {
                   const myFunction = async () => {
-                    axios({
-                      method: "post",
-                      url: `/api/timesheets/calculate-daily-earning`,
-                      timeout: 8000, // 5 seconds timeout
-                      headers: {},
-                      data: {
-                        TimesheetID: parseInt(timesheetID),
-                      },
-                    });
+                    for (let l = 0; l < timesheetIDArray.length; l++) {
+                      axios({
+                        method: "post",
+                        url: `/api/timesheets/calculate-daily-earning`,
+                        timeout: 8000, // 5 seconds timeout
+                        headers: {},
+                        data: {
+                          TimesheetID: parseInt(timesheetIDArray[l]),
+                        },
+                      });
+                    }
                   };
 
                   setTimeout(() => {
