@@ -480,7 +480,21 @@ const Timesheet = () => {
                 });
 
                 if (k == param_CalculateHours.length - 1) {
-                  //call procedure
+                  const myFunction = async () => {
+                    axios({
+                      method: "post",
+                      url: `/api/timesheets/calculate-daily-earning`,
+                      timeout: 8000, // 5 seconds timeout
+                      headers: {},
+                      data: {
+                        TimesheetID: parseInt(timesheetID),
+                      },
+                    });
+                  };
+
+                  setTimeout(() => {
+                    myFunction();
+                  }, 1000);
                 }
               }
             }
@@ -1353,6 +1367,23 @@ const Timesheet = () => {
                       param_CalculateHours[k].Type == "Officer" ? 1 : 0,
                   },
                 });
+                if (k == param_CalculateHours.length - 1) {
+                  const myFunction = async () => {
+                    axios({
+                      method: "post",
+                      url: `/api/timesheets/calculate-daily-earning`,
+                      timeout: 8000, // 5 seconds timeout
+                      headers: {},
+                      data: {
+                        TimesheetID: parseInt(timesheetID),
+                      },
+                    });
+                  };
+
+                  setTimeout(() => {
+                    myFunction();
+                  }, 1000);
+                }
               }
             }
           }
