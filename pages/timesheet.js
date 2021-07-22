@@ -63,7 +63,6 @@ let dataEmployees = [];
 let dataTasks = [];
 let dataLatest = [];
 let id = -1000000;
-let checkUseEffectDataTable = 0;
 
 const convertInputToTime = time => {
   let match = inputTime.filter(data => data.input === time);
