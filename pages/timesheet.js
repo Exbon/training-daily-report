@@ -1651,6 +1651,16 @@ const Timesheet = () => {
     setDataLaborHours(resultTable);
   }, [dataTable]);
 
+  const popupClickGetTheLatestData = () => {
+    if (confirm("Are you sure you want to IMPORT LAST TIMESHEET?")) {
+      // Save it!
+      clickGetTheLatestData();
+    } else {
+      // Do nothing!
+      console.log("Do nothing");
+    }
+  };
+
   return (
     <>
       {/* {console.log("data")}
@@ -1661,6 +1671,7 @@ const Timesheet = () => {
       {console.log(dataTable)}
       {console.log("dataLaborHours")}
       {console.log(dataLaborHours)} */}
+      {console.log(now)}
 
       <Head>
         <title>Daily Report</title>
@@ -1810,7 +1821,8 @@ const Timesheet = () => {
                       )}
 
                       <Button
-                        onClick={clickGetTheLatestData}
+                        onClick={popupClickGetTheLatestData}
+                        // onClick={clickGetTheLatestData}
                         variant="contained"
                         size="small"
                         className={
@@ -1828,6 +1840,8 @@ const Timesheet = () => {
                         Import Last Timesheet
                       </Button>
                       <Button
+                        onClick={handleSetSameTask}
+                        // onClick={handleSetSameTask}
                         variant="contained"
                         size="small"
                         className={
@@ -1841,7 +1855,6 @@ const Timesheet = () => {
                           color: "#ffffff",
                           marginRight: "10px",
                         }}
-                        onClick={handleSetSameTask}
                       >
                         Copy First Employee
                       </Button>
