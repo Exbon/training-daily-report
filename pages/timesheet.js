@@ -1661,6 +1661,16 @@ const Timesheet = () => {
     }
   };
 
+  const popupHandleSetSameTask = () => {
+    if (confirm("Are you sure you want to COPY FIRST EMPLOYEE?")) {
+      // Save it!
+      handleSetSameTask();
+    } else {
+      // Do nothing!
+      console.log("Do nothing");
+    }
+  };
+
   return (
     <>
       {/* {console.log("data")}
@@ -1840,7 +1850,7 @@ const Timesheet = () => {
                         Import Last Timesheet
                       </Button>
                       <Button
-                        onClick={handleSetSameTask}
+                        onClick={popupHandleSetSameTask}
                         // onClick={handleSetSameTask}
                         variant="contained"
                         size="small"
