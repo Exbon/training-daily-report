@@ -1571,6 +1571,7 @@ const Timesheet = () => {
     });
 
     setData(() => tempData);
+    setDataTable(() => tempDataTask);
   };
 
   const hasMealCheck = () => {
