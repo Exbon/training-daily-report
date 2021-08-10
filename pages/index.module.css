@@ -82,3 +82,12 @@
     visibility: visible;
   }
 }
+
+@media screen and (max-width: 601px) {
+  .wrapper-select-project {
+    width: 40%;
+    margin-left: 35%;
+    margin-right: auto;
+    margin-top: 30%;
+  }
+}
