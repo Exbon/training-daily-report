@@ -663,6 +663,11 @@
     width: 33px !important;
     font-size: 0.8rem;
   }
+
+  .modal-no-work__wrapper-table {
+    max-height: 250px;
+    overflow: auto;
+  }
 }
 
 @media screen and (max-width: 712px) {

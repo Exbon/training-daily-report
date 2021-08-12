@@ -1446,6 +1446,7 @@ const Task = () => {
                         position: "relative",
                         height: "30px",
                         marginBottom: "3px",
+                        width: resolution1008 ? "500px" : "800px",
                       }}
                     >
                       {stateAssignedProject.map(item => {
