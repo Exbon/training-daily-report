@@ -94,18 +94,18 @@ const Task = () => {
       {
         Header: "Summary Task",
         accessor: "License",
-        width: resolution1008 ? 120 : 160,
+        width: resolution1008 ? 80 : 160,
       },
 
       {
         Header: "Task",
         accessor: "TaskName",
-        width: resolution1008 ? 320 : 360,
+        width: resolution1008 ? 260 : 360,
       },
       {
         Header: "Resource",
         accessor: "Company",
-        width: resolution1008 ? 170 : 260,
+        width: resolution1008 ? 120 : 260,
       },
       {
         Header: "Start Date",
