@@ -299,14 +299,14 @@
   width: 1130px;
 }
 
-@media screen and (max-width: 1139px) {
+@media screen and (max-width: 1080px) {
   #mainDiv {
-    width: 1070px;
+    width: 980px;
   }
 
   .table__add-row {
     display: flex;
-    width: 1068px;
+    width: 968px;
   }
 
   .header {
@@ -324,11 +324,11 @@
   }
 
   .table__button-add {
-    width: 200px;
+    width: 180px;
   }
 
   .table__trade-column {
-    width: 220px;
+    width: 200px;
   }
 
   .table__worker-column {
@@ -339,11 +339,11 @@
     width: 80px;
   }
   .table__equipment-column {
-    width: 200px;
+    width: 170px;
   }
 
   .table__perform-column {
-    width: 250px;
+    width: 220px;
   }
 
   .table__delete-column {
@@ -351,7 +351,7 @@
   }
 
   .table__contractor__input {
-    width: 180px !important;
+    width: 160px !important;
     text-align: left !important;
   }
 
@@ -360,7 +360,7 @@
   }
 
   .table__trade__input {
-    width: 200px !important;
+    width: 180px !important;
     text-align: left !important;
   }
 
@@ -375,12 +375,12 @@
   }
 
   .table__equipment__input {
-    width: 180px !important;
+    width: 150px !important;
     text-align: left !important;
   }
 
   .table__work-performed__input {
-    width: 230px !important;
+    width: 200px !important;
     text-align: left !important;
   }
 

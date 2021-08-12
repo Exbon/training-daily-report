@@ -107,8 +107,8 @@ const workActivities = () => {
   const [checkDownload, setCheckDownload] = useState(0);
   const { promiseInProgress } = usePromiseTracker();
 
-  const resolution1139 = useMediaQuery({
-    maxWidth: "1139px",
+  const resolution1008 = useMediaQuery({
+    maxWidth: "1008px",
     minWidth: "712px",
   });
 
@@ -117,12 +117,12 @@ const workActivities = () => {
       {
         Header: "Contractor",
         accessor: "Contractor",
-        width: resolution1139 ? 200 : 220,
+        width: resolution1008 ? 180 : 220,
       },
       {
         Header: "Trade",
         accessor: "Trade",
-        width: resolution1139 ? 220 : 250,
+        width: resolution1008 ? 200 : 250,
       },
       {
         Header: "Manpower",
@@ -143,12 +143,12 @@ const workActivities = () => {
       {
         Header: "Equipment Utilization",
         accessor: "Equipment",
-        width: resolution1139 ? 200 : 203,
+        width: resolution1008 ? 170 : 203,
       },
       {
         Header: "Work Performed",
         accessor: "WorkPerformed",
-        width: resolution1139 ? 250 : 260,
+        width: resolution1008 ? 220 : 260,
       },
       {
         Header: "",
