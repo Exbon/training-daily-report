@@ -63,7 +63,6 @@ const Task = () => {
 
   const resolution602 = useMediaQuery({
     maxWidth: "602px",
-    minWidth: "1009px",
   });
 
   const router = useRouter();
@@ -1446,7 +1445,11 @@ const Task = () => {
                         position: "relative",
                         height: "30px",
                         marginBottom: "3px",
-                        width: resolution1008 ? "500px" : "800px",
+                        width: resolution602
+                          ? "450px"
+                          : resolution1008
+                          ? "500px"
+                          : "800px",
                       }}
                     >
                       {stateAssignedProject.map(item => {
