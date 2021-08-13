@@ -370,9 +370,9 @@
   color: slateblue;
 }
 
-@media screen and (max-width: 712px) {
+@media screen and (max-width: 602px) {
   #mainDiv {
-    width: 680px;
+    width: 580px;
   }
   .header {
     flex-direction: flex;
@@ -383,26 +383,26 @@
     margin-top: 20px;
   }
   .header__left select {
-    width: 570px !important;
+    width: 450px !important;
   }
   .tablet-button {
     visibility: visible !important;
   }
 
   .table {
-    width: 680px !important;
+    width: 580px !important;
   }
   .employee-dropdown-wrapper {
-    width: 680px !important;
+    width: 580px !important;
   }
 
   .task-dropdown {
-    width: 200px !important;
+    width: 170px !important;
   }
 
   .second-table table {
     margin-left: 0px !important;
-    width: 680px !important;
+    width: 580px !important;
   }
   .table__hour-dropdown,
   .table__min-dropdown,
@@ -413,29 +413,35 @@
   .header__right__add-task-btn {
     background-color: #f3aa22 !important;
     color: white !important;
-    width: 100px !important;
+    width: 70px !important;
     height: 72px !important;
     margin-right: 10px !important;
+    font-size: 0.7rem !important;
   }
 
   .header__right__add-btn {
+    width: 72px !important;
     margin-right: 10px !important;
     height: 72px;
+    font-size: 0.7rem !important;
   }
 
   .header__right__update-btn {
+    width: 72px !important;
     margin-right: 10px !important;
     height: 72px;
+    font-size: 0.7rem !important;
   }
 
   .header__right__save-btn {
-    width: 140px !important;
+    width: 95px !important;
     height: 72px;
-    padding: 18px !important;
+    padding: 22px !important;
+    font-size: 0.7rem !important;
   }
 }
 
-@media screen and (max-width: 1139px) {
+@media screen and (max-width: 1008px) {
   .tablet-button {
     visibility: visible !important;
   }

@@ -73,8 +73,8 @@ const convertInputToTime = time => {
 };
 
 const Timesheet = () => {
-  const resolution712 = useMediaQuery({
-    maxWidth: "712px",
+  const resolution602 = useMediaQuery({
+    maxWidth: "602px",
   });
 
   const router = useRouter();
@@ -1680,8 +1680,8 @@ const Timesheet = () => {
       {console.log("dataTable")}
       {console.log(dataTable)}
       {console.log("dataLaborHours")}
-      {console.log(dataLaborHours)} */}
-      {console.log(now)}
+      {console.log(dataLaborHours)} 
+      {console.log(now)}*/}
 
       <Head>
         <title>Daily Report</title>
@@ -1957,7 +1957,7 @@ const Timesheet = () => {
                       <Table>
                         <TableHead>
                           <TableRow>
-                            <TableCell width={resolution712 ? 250 : 450}>
+                            <TableCell width={resolution602 ? 200 : 450}>
                               Task
                             </TableCell>
                             <TableCell widht={80}>Start Time</TableCell>
