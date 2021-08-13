@@ -109,7 +109,11 @@ const workActivities = () => {
 
   const resolution1008 = useMediaQuery({
     maxWidth: "1008px",
-    minWidth: "712px",
+    minWidth: "602px",
+  });
+
+  const resolution602 = useMediaQuery({
+    maxWidth: "602px",
   });
 
   const columns = React.useMemo(
@@ -995,7 +999,7 @@ const workActivities = () => {
                       background: "#fff",
                       zIndex: "1",
                       position: "relative",
-                      maxWidth: "600px",
+                      maxWidth: resolution602 ? "450px" : "600px",
                       height: "30px",
                     }}
                   >
@@ -1140,7 +1144,12 @@ const workActivities = () => {
                   <option value="Foggy">Foggy</option>
                   <option value="Snowy">Snowy</option>
                 </select>
-                <div style={{ marginLeft: "80px", display: "flex" }}>
+                <div
+                  style={{
+                    marginLeft: resolution602 ? "50px" : "80px",
+                    display: "flex",
+                  }}
+                >
                   <div style={{ display: "flex" }}>
                     <TextField
                       className={styles["table__start-time"]}

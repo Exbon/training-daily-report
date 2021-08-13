@@ -391,14 +391,14 @@
   }
 }
 
-@media screen and (max-width: 712px) {
+@media screen and (max-width: 602px) {
   #mainDiv {
-    width: 680px;
+    width: 580px;
   }
 
   .table__add-row {
     display: flex;
-    width: 1068px;
+    width: 970px;
   }
   .header {
     flex-direction: column;
