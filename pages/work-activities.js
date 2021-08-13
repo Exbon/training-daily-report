@@ -109,11 +109,10 @@ const workActivities = () => {
 
   const resolution1008 = useMediaQuery({
     maxWidth: "1008px",
-    minWidth: "602px",
   });
 
   const resolution602 = useMediaQuery({
-    maxWidth: "602px",
+    maxWidth: "603px",
   });
 
   const columns = React.useMemo(
