@@ -58,7 +58,7 @@ const MainTab = ({
             textColor={tapNo === 0 ? "inherit" : "primary"}
           />
         </Link>
-        <Link
+        {/* <Link
           href={
             projectState
               ? `/work-activities?pid=${projectState}`
@@ -72,7 +72,7 @@ const MainTab = ({
             disabled={main}
             textColor={tapNo === 1 ? "inherit" : "primary"}
           />
-        </Link>
+        </Link> */}
         {/* <Link href={`/self-timesheet?prevPid=${projectState}`}>
           <Tab
             label={main ? "" : "Self Timesheet"}
