@@ -1699,7 +1699,7 @@ const Timesheet = () => {
       ) : (
         <>
           <MainTab
-            tapNo={2}
+            tapNo={1}
             main={false}
             employeeID={status.cookies.employeeid}
             employeeName={status.cookies.fullname}

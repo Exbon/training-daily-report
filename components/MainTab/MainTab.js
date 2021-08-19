@@ -90,7 +90,7 @@ const MainTab = ({
             // onClick={() => Router.push(`/timesheet/${projectState}`)}
             disableRipple={true}
             disabled={main}
-            textColor={tapNo === 2 ? "inherit" : "primary"}
+            textColor={tapNo === 1 ? "inherit" : "primary"}
           />
         </Link>
         {/* <Link href={`/deficiency-log/${projectState}`}>
