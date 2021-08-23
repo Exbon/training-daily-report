@@ -1945,222 +1945,247 @@ const Timesheet = () => {
                   </div>
                 </div>
                 <div>
-                  <div
-                    className={styles["table"]}
-                    style={
-                      !afterSundayCheck && data.length === 0
-                        ? { display: "none" }
-                        : {}
-                    }
-                  >
-                    <TableContainer component={Paper}>
-                      <Table>
-                        <TableHead>
-                          <TableRow>
-                            <TableCell width={resolution602 ? 200 : 450}>
-                              Task
-                            </TableCell>
-                            <TableCell widht={80}>Start Time</TableCell>
-                            <TableCell widht={80}>End Time</TableCell>
-                            <TableCell widht={70}>Hours</TableCell>
-                            <TableCell widht={10}></TableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {dataTable.map(element => {
-                            return (
-                              <TableRow key={element.Id}>
-                                <TableCell>
-                                  <div>
-                                    <select
-                                      className={styles["task-dropdown"]}
-                                      value={element.TaskID}
-                                      onChange={e =>
-                                        changeTaskID(element.Id, e.target.value)
-                                      }
-                                      disabled={afterSundayCheck ? false : true}
-                                    >
-                                      {dataTasks.map(elementTask => {
-                                        return (
-                                          <option
-                                            key={elementTask.TaskID}
-                                            value={elementTask.TaskID}
-                                          >
-                                            {elementTask.Name}
-                                          </option>
-                                        );
-                                      })}
-                                    </select>
-                                  </div>
+                  {!(!dateCheckEditable(selectedDate) &&
+                    !selectedSummaryEmployee) && (
+                      <div
+                        className={styles["table"]}
+                        style={
+                          !afterSundayCheck && data.length === 0
+                            ? { display: "none" }
+                            : {}
+                        }
+                      >
+                        <TableContainer component={Paper}>
+                          <Table>
+                            <TableHead>
+                              <TableRow>
+                                <TableCell width={resolution602 ? 200 : 450}>
+                                  Task
                                 </TableCell>
-                                <TableCell>
-                                  <div
-                                    className={styles["table__time-wrapper"]}
-                                  >
-                                    <select
-                                      className={classNames(
-                                        "table__time-wrapper__target-disabled",
-                                        styles["table__hour-dropdown"]
-                                      )}
-                                      disabled={afterSundayCheck ? false : true}
-                                      value={element.StartTime.slice(0, 2)}
-                                      onChange={e =>
-                                        changeTime(
-                                          element.Id,
-                                          "start",
-                                          "hh",
-                                          e.target.value
-                                        )
-                                      }
-                                    >
-                                      <option value="00">00</option>
-                                      <option value="01">01</option>
-                                      <option value="02">02</option>
-                                      <option value="03">03</option>
-                                      <option value="04">04</option>
-                                      <option value="05">05</option>
-                                      <option value="06">06</option>
-                                      <option value="07">07</option>
-                                      <option value="08">08</option>
-                                      <option value="09">09</option>
-                                      <option value="10">10</option>
-                                      <option value="11">11</option>
-                                      <option value="12">12</option>
-                                    </select>
-                                    :
-                                    <select
-                                      className={classNames(
-                                        "table__time-wrapper__target-disabled",
-                                        styles["table__min-dropdown"]
-                                      )}
-                                      disabled={afterSundayCheck ? false : true}
-                                      value={element.StartTime.slice(3, 5)}
-                                      onChange={e =>
-                                        changeTime(
-                                          element.Id,
-                                          "start",
-                                          "mm",
-                                          e.target.value
-                                        )
-                                      }
-                                    >
-                                      <option value="00">00</option>
-                                      <option value="10">10</option>
-                                      <option value="20">20</option>
-                                      <option value="30">30</option>
-                                      <option value="40">40</option>
-                                      <option value="50">50</option>
-                                    </select>
-                                    <select
-                                      className={classNames(
-                                        "table__time-wrapper__target-disabled",
-                                        styles["table__ampm-dropdown"]
-                                      )}
-                                      disabled={afterSundayCheck ? false : true}
-                                      value={element.StartTime.slice(5, 7)}
-                                      onChange={e =>
-                                        changeTime(
-                                          element.Id,
-                                          "start",
-                                          "AP",
-                                          e.target.value
-                                        )
-                                      }
-                                    >
-                                      <option value="AM">AM</option>
-                                      <option value="PM">PM</option>
-                                    </select>
-                                  </div>
-                                </TableCell>
-                                <TableCell>
-                                  <div
-                                    className={styles["table__time-wrapper"]}
-                                  >
-                                    <select
-                                      className={classNames(
-                                        "table__time-wrapper__target-disabled",
-                                        styles["table__hour-dropdown"]
-                                      )}
-                                      disabled={afterSundayCheck ? false : true}
-                                      value={element.EndTime.slice(0, 2)}
-                                      onChange={e =>
-                                        changeTime(
-                                          element.Id,
-                                          "end",
-                                          "hh",
-                                          e.target.value
-                                        )
-                                      }
-                                    >
-                                      <option value="00">00</option>
-                                      <option value="01">01</option>
-                                      <option value="02">02</option>
-                                      <option value="03">03</option>
-                                      <option value="04">04</option>
-                                      <option value="05">05</option>
-                                      <option value="06">06</option>
-                                      <option value="07">07</option>
-                                      <option value="08">08</option>
-                                      <option value="09">09</option>
-                                      <option value="10">10</option>
-                                      <option value="11">11</option>
-                                      <option value="12">12</option>
-                                    </select>
-                                    :
-                                    <select
-                                      className={classNames(
-                                        "table__time-wrapper__target-disabled",
-                                        styles["table__min-dropdown"]
-                                      )}
-                                      disabled={afterSundayCheck ? false : true}
-                                      value={element.EndTime.slice(3, 5)}
-                                      onChange={e =>
-                                        changeTime(
-                                          element.Id,
-                                          "end",
-                                          "mm",
-                                          e.target.value
-                                        )
-                                      }
-                                    >
-                                      <option value="00">00</option>
-                                      <option value="10">10</option>
-                                      <option value="20">20</option>
-                                      <option value="30">30</option>
-                                      <option value="40">40</option>
-                                      <option value="50">50</option>
-                                    </select>
-                                    <select
-                                      className={classNames(
-                                        "table__time-wrapper__target-disabled",
-                                        styles["table__ampm-dropdown"]
-                                      )}
-                                      disabled={afterSundayCheck ? false : true}
-                                      value={element.EndTime.slice(5, 7)}
-                                      onChange={e =>
-                                        changeTime(
-                                          element.Id,
-                                          "end",
-                                          "AP",
-                                          e.target.value
-                                        )
-                                      }
-                                    >
-                                      <option value="AM">AM</option>
-                                      <option value="PM">PM</option>
-                                    </select>
-                                  </div>
-                                </TableCell>
-                                <TableCell>
-                                  <div>
-                                    <span>
-                                      {dataLaborHours.map(el => {
-                                        if (el.Id == element.Id) {
-                                          return el.TaskLaborHours.toFixed(2);
+                                <TableCell widht={80}>Start Time</TableCell>
+                                <TableCell widht={80}>End Time</TableCell>
+                                <TableCell widht={70}>Hours</TableCell>
+                                <TableCell widht={10}></TableCell>
+                              </TableRow>
+                            </TableHead>
+                            <TableBody>
+                              {dataTable.map(element => {
+                                return (
+                                  <TableRow key={element.Id}>
+                                    <TableCell>
+                                      <div>
+                                        <select
+                                          className={styles["task-dropdown"]}
+                                          value={element.TaskID}
+                                          onChange={e =>
+                                            changeTaskID(
+                                              element.Id,
+                                              e.target.value
+                                            )
+                                          }
+                                          disabled={
+                                            afterSundayCheck ? false : true
+                                          }
+                                        >
+                                          {dataTasks.map(elementTask => {
+                                            return (
+                                              <option
+                                                key={elementTask.TaskID}
+                                                value={elementTask.TaskID}
+                                              >
+                                                {elementTask.Name}
+                                              </option>
+                                            );
+                                          })}
+                                        </select>
+                                      </div>
+                                    </TableCell>
+                                    <TableCell>
+                                      <div
+                                        className={
+                                          styles["table__time-wrapper"]
                                         }
-                                      })}
+                                      >
+                                        <select
+                                          className={classNames(
+                                            "table__time-wrapper__target-disabled",
+                                            styles["table__hour-dropdown"]
+                                          )}
+                                          disabled={
+                                            afterSundayCheck ? false : true
+                                          }
+                                          value={element.StartTime.slice(0, 2)}
+                                          onChange={e =>
+                                            changeTime(
+                                              element.Id,
+                                              "start",
+                                              "hh",
+                                              e.target.value
+                                            )
+                                          }
+                                        >
+                                          <option value="00">00</option>
+                                          <option value="01">01</option>
+                                          <option value="02">02</option>
+                                          <option value="03">03</option>
+                                          <option value="04">04</option>
+                                          <option value="05">05</option>
+                                          <option value="06">06</option>
+                                          <option value="07">07</option>
+                                          <option value="08">08</option>
+                                          <option value="09">09</option>
+                                          <option value="10">10</option>
+                                          <option value="11">11</option>
+                                          <option value="12">12</option>
+                                        </select>
+                                        :
+                                        <select
+                                          className={classNames(
+                                            "table__time-wrapper__target-disabled",
+                                            styles["table__min-dropdown"]
+                                          )}
+                                          disabled={
+                                            afterSundayCheck ? false : true
+                                          }
+                                          value={element.StartTime.slice(3, 5)}
+                                          onChange={e =>
+                                            changeTime(
+                                              element.Id,
+                                              "start",
+                                              "mm",
+                                              e.target.value
+                                            )
+                                          }
+                                        >
+                                          <option value="00">00</option>
+                                          <option value="10">10</option>
+                                          <option value="20">20</option>
+                                          <option value="30">30</option>
+                                          <option value="40">40</option>
+                                          <option value="50">50</option>
+                                        </select>
+                                        <select
+                                          className={classNames(
+                                            "table__time-wrapper__target-disabled",
+                                            styles["table__ampm-dropdown"]
+                                          )}
+                                          disabled={
+                                            afterSundayCheck ? false : true
+                                          }
+                                          value={element.StartTime.slice(5, 7)}
+                                          onChange={e =>
+                                            changeTime(
+                                              element.Id,
+                                              "start",
+                                              "AP",
+                                              e.target.value
+                                            )
+                                          }
+                                        >
+                                          <option value="AM">AM</option>
+                                          <option value="PM">PM</option>
+                                        </select>
+                                      </div>
+                                    </TableCell>
+                                    <TableCell>
+                                      <div
+                                        className={
+                                          styles["table__time-wrapper"]
+                                        }
+                                      >
+                                        <select
+                                          className={classNames(
+                                            "table__time-wrapper__target-disabled",
+                                            styles["table__hour-dropdown"]
+                                          )}
+                                          disabled={
+                                            afterSundayCheck ? false : true
+                                          }
+                                          value={element.EndTime.slice(0, 2)}
+                                          onChange={e =>
+                                            changeTime(
+                                              element.Id,
+                                              "end",
+                                              "hh",
+                                              e.target.value
+                                            )
+                                          }
+                                        >
+                                          <option value="00">00</option>
+                                          <option value="01">01</option>
+                                          <option value="02">02</option>
+                                          <option value="03">03</option>
+                                          <option value="04">04</option>
+                                          <option value="05">05</option>
+                                          <option value="06">06</option>
+                                          <option value="07">07</option>
+                                          <option value="08">08</option>
+                                          <option value="09">09</option>
+                                          <option value="10">10</option>
+                                          <option value="11">11</option>
+                                          <option value="12">12</option>
+                                        </select>
+                                        :
+                                        <select
+                                          className={classNames(
+                                            "table__time-wrapper__target-disabled",
+                                            styles["table__min-dropdown"]
+                                          )}
+                                          disabled={
+                                            afterSundayCheck ? false : true
+                                          }
+                                          value={element.EndTime.slice(3, 5)}
+                                          onChange={e =>
+                                            changeTime(
+                                              element.Id,
+                                              "end",
+                                              "mm",
+                                              e.target.value
+                                            )
+                                          }
+                                        >
+                                          <option value="00">00</option>
+                                          <option value="10">10</option>
+                                          <option value="20">20</option>
+                                          <option value="30">30</option>
+                                          <option value="40">40</option>
+                                          <option value="50">50</option>
+                                        </select>
+                                        <select
+                                          className={classNames(
+                                            "table__time-wrapper__target-disabled",
+                                            styles["table__ampm-dropdown"]
+                                          )}
+                                          disabled={
+                                            afterSundayCheck ? false : true
+                                          }
+                                          value={element.EndTime.slice(5, 7)}
+                                          onChange={e =>
+                                            changeTime(
+                                              element.Id,
+                                              "end",
+                                              "AP",
+                                              e.target.value
+                                            )
+                                          }
+                                        >
+                                          <option value="AM">AM</option>
+                                          <option value="PM">PM</option>
+                                        </select>
+                                      </div>
+                                    </TableCell>
+                                    <TableCell>
+                                      <div>
+                                        <span>
+                                          {dataLaborHours.map(el => {
+                                            if (el.Id == element.Id) {
+                                              return el.TaskLaborHours.toFixed(
+                                                2
+                                              );
+                                            }
+                                          })}
 
-                                      {/* {(
+                                          {/* {(
                                         (new Date(
                                           convertInputToTime(
                                             element.EndTime
@@ -2173,30 +2198,35 @@ const Timesheet = () => {
                                           )) /
                                         3600000
                                       ).toFixed(2)} */}
-                                    </span>
-                                  </div>
-                                </TableCell>
-                                <TableCell>
-                                  <div
-                                    className={styles["table__delete-input"]}
-                                  >
-                                    <DeleteForeverIcon
-                                      color="action"
-                                      className={styles["table__delete-icon"]}
-                                      onClick={() => {
-                                        afterSundayCheck &&
-                                          clickDeleteTaskBtn(element.Id);
-                                      }}
-                                    ></DeleteForeverIcon>
-                                  </div>
-                                </TableCell>
-                              </TableRow>
-                            );
-                          })}
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
-                  </div>
+                                        </span>
+                                      </div>
+                                    </TableCell>
+                                    <TableCell>
+                                      <div
+                                        className={
+                                          styles["table__delete-input"]
+                                        }
+                                      >
+                                        <DeleteForeverIcon
+                                          color="action"
+                                          className={
+                                            styles["table__delete-icon"]
+                                          }
+                                          onClick={() => {
+                                            afterSundayCheck &&
+                                              clickDeleteTaskBtn(element.Id);
+                                          }}
+                                        ></DeleteForeverIcon>
+                                      </div>
+                                    </TableCell>
+                                  </TableRow>
+                                );
+                              })}
+                            </TableBody>
+                          </Table>
+                        </TableContainer>
+                      </div>
+                    )}
                 </div>
 
                 {dataView.length === 0 ? (
