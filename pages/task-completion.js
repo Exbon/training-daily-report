@@ -692,92 +692,102 @@ const Task = () => {
           data[i].NewReqStartDate !== null ||
           data[i].NewReqFinishDate !== null
         ) {
-          await axios({
-            method: "POST",
-            url: `/api/project-date-change-request`,
-            timeout: 1000000, // 3 seconds timeout
-            headers: {},
-            data: {
-              EmployeeID: status.cookies.employeeid,
-              ProjectID: projectState,
-              RequestType: "Task",
-              RequestID: data[i].TaskID,
-              StartDate: data[i].ReqStartDate,
-              EndDate: data[i].ReqFinishDate,
-              Reason: null,
-            },
-          });
+          promises.push(
+            axios({
+              method: "POST",
+              url: `/api/project-date-change-request`,
+              timeout: 1000000, // 3 seconds timeout
+              headers: {},
+              data: {
+                EmployeeID: status.cookies.employeeid,
+                ProjectID: projectState,
+                RequestType: "Task",
+                RequestID: data[i].TaskID,
+                StartDate: data[i].ReqStartDate,
+                EndDate: data[i].ReqFinishDate,
+                Reason: null,
+              },
+            })
+          );
         }
 
         if (!(data[i].CurrentWork === null || data[i].CurrentWork === "")) {
-          await axios({
-            method: "put",
-            url: `/api/project-tasks-progress`,
-            timeout: 1000000,
-            headers: {},
-            data: {
-              TaskID: data[i].TaskID,
-              Date: document.getElementById("datePickerDialog").value,
-              WorkCompleted: data[i].CurrentWork,
-            },
-          });
+          promises.push(
+            axios({
+              method: "put",
+              url: `/api/project-tasks-progress`,
+              timeout: 1000000,
+              headers: {},
+              data: {
+                TaskID: data[i].TaskID,
+                Date: document.getElementById("datePickerDialog").value,
+                WorkCompleted: data[i].CurrentWork,
+              },
+            })
+          );
         }
       }
 
-      noWork.forEach(async item => {
+      noWork.forEach(item => {
         let reason = item.Note.replaceAll(`'`, `''`);
         if (reason === "") {
           reason = null;
         }
         if (item.OrderStatus === "3") {
           if (item.Status === "Request For New") {
-            await axios({
-              method: "POST",
-              url: `/api/project-date-change-request`,
-              timeout: 1000000, // 3 seconds timeout
-              headers: {},
-              data: {
-                EmployeeID: status.cookies.employeeid,
-                ProjectID: projectState,
-                RequestType: "No Work",
-                RequestID: null,
-                StartDate: formatDate(item.StartDate),
-                EndDate: formatDate(item.FinishDate),
-                Reason: reason,
-              },
-            });
+            promises.push(
+              axios({
+                method: "POST",
+                url: `/api/project-date-change-request`,
+                timeout: 1000000, // 3 seconds timeout
+                headers: {},
+                data: {
+                  EmployeeID: status.cookies.employeeid,
+                  ProjectID: projectState,
+                  RequestType: "No Work",
+                  RequestID: null,
+                  StartDate: formatDate(item.StartDate),
+                  EndDate: formatDate(item.FinishDate),
+                  Reason: reason,
+                },
+              })
+            );
           } else if (item.Status === "Request For Edit") {
-            await axios({
-              method: "POST",
-              url: `/api/project-date-change-request`,
-              timeout: 1000000, // 3 seconds timeout
-              headers: {},
-              data: {
-                EmployeeID: status.cookies.employeeid,
-                ProjectID: projectState,
-                RequestType: "No Work Modify",
-                RequestID: item.RecordID,
-                StartDate: formatDate(item.StartDate),
-                EndDate: formatDate(item.FinishDate),
-                Reason: reason,
-              },
-            });
+            promises.push(
+              axios({
+                method: "POST",
+                url: `/api/project-date-change-request`,
+                timeout: 1000000, // 3 seconds timeout
+                headers: {},
+                data: {
+                  EmployeeID: status.cookies.employeeid,
+                  ProjectID: projectState,
+                  RequestType: "No Work Modify",
+                  RequestID: item.RecordID,
+                  StartDate: formatDate(item.StartDate),
+                  EndDate: formatDate(item.FinishDate),
+                  Reason: reason,
+                },
+              })
+            );
           } else if (item.Status === "Request For Delete") {
-            await axios({
-              method: "POST",
-              url: `/api/project-date-change-request`,
-              timeout: 1000000, // 3 seconds timeout
-              headers: {},
-              data: {
-                EmployeeID: status.cookies.employeeid,
-                ProjectID: projectState,
-                RequestType: "No Work Delete",
-                RequestID: item.RecordID,
-                StartDate: formatDate(item.StartDate),
-                EndDate: formatDate(item.FinishDate),
-                Reason: reason,
-              },
-            });
+            promises.push(
+              axios({
+                method: "POST",
+                url: `/api/project-date-change-request`,
+                timeout: 1000000, // 3 seconds timeout
+                headers: {},
+                data: {
+                  EmployeeID: status.cookies.employeeid,
+                  ProjectID: projectState,
+                  RequestType: "No Work Delete",
+                  RequestID: item.RecordID,
+                  StartDate: formatDate(item.StartDate),
+                  EndDate: formatDate(item.FinishDate),
+                  Reason: reason,
+                },
+              })
+            );
           }
         }
       });
