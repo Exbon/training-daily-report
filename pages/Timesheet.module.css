@@ -72,6 +72,7 @@
 
 .header__right__add-btn-before-sunday {
   margin-right: 10px !important;
+  width: 150px;
   visibility: hidden;
 }
 
@@ -83,6 +84,7 @@
 
 .header__right__update-btn-before-sunday {
   margin-right: 10px !important;
+  width: 150px;
   visibility: hidden;
 }
 
