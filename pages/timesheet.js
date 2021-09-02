@@ -664,6 +664,34 @@ const Timesheet = () => {
     }
   };
 
+  const employeeTypeCheck2 = employeeID => {
+    let checkOfficer = 0;
+    let checkSubsistence = 0;
+    /*
+    -1 Precon
+    -2 Office
+    -3 Supervision - On Field
+
+    */
+    data2.forEach(element => {
+      if (
+        employeeID == element.EmployeeID &&
+        (-1 == element.TaskID || -2 == element.TaskID || -3 == element.TaskID)
+      ) {
+        checkOfficer += 1;
+        if (element.TaskID == -3) checkSubsistence++;
+      }
+    });
+
+    if (checkOfficer > 0) {
+      if (checkSubsistence > 0) {
+        return "Officer_Subsistence";
+      } else return "Officer";
+    } else {
+      return "Field";
+    }
+  };
+
   useEffect(() => {
     let tempData = [];
     data.forEach(element => {
@@ -1262,7 +1290,7 @@ const Timesheet = () => {
             if (!employeeDuplicateCheck) {
               param_CalculateHours.push({
                 EmployeeID: elementDataView.EmployeeID,
-                Type: employeeTypeCheck(elementDataView.EmployeeID),
+                Type: employeeTypeCheck2(elementDataView.EmployeeID),
               });
             }
           });
@@ -1305,7 +1333,7 @@ const Timesheet = () => {
                 tempDataView[i].TravelStart == tempDataView[i].TravelFinish
                   ? "12:00:00"
                   : moment(tempDataView[i].TravelFinish).format("LT"),
-              Type: employeeTypeCheck(tempDataView[i].EmployeeID),
+              Type: employeeTypeCheck2(tempDataView[i].EmployeeID),
 
               /* --Params--
               ${body.ProjectID},
