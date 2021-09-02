@@ -474,8 +474,7 @@ const Timesheet = () => {
                     EndDate: moment(selectedDate).endOf("week").toDate(),
                     ProjectID: parseInt(projectState),
                     EmployeeID: param_CalculateHours[k].EmployeeID,
-                    IsOfficer:
-                      param_CalculateHours[k].Type == "Officer" ? 1 : 0,
+                    IsOfficer: param_CalculateHours[k].Type != "Field" ? 1 : 0,
                   },
                 });
 
