@@ -369,9 +369,10 @@ const Timesheet = () => {
             });
 
             if (!employeeDuplicateCheck) {
+              const typeCheck = employeeTypeCheck(elementDataView.EmployeeID);
               param_CalculateHours.push({
                 EmployeeID: elementDataView.EmployeeID,
-                Type: employeeTypeCheck(elementDataView.EmployeeID),
+                Type: typeCheck,
               });
             }
           });
@@ -387,6 +388,8 @@ const Timesheet = () => {
         let timesheetIDArray = [];
         for (let i = 0; i < tempDataView.length; i++) {
           let timesheetID = 0;
+          const typeCheck = employeeTypeCheck(tempDataView[i].EmployeeID);
+          debugger;
           await axios({
             method: "post",
             url: `/api/timesheets`,
@@ -414,7 +417,7 @@ const Timesheet = () => {
                 tempDataView[i].TravelStart == tempDataView[i].TravelFinish
                   ? "12:00:00"
                   : moment(tempDataView[i].TravelFinish).format("LT"),
-              Type: employeeTypeCheck(tempDataView[i].EmployeeID),
+              Type: typeCheck,
 
               /* --Params--
               ${body.ProjectID},
@@ -464,6 +467,13 @@ const Timesheet = () => {
 
             if (i == tempDataView.length - 1 && j == data.length - 1) {
               for (let k = 0; k < param_CalculateHours.length; k++) {
+                const typeCheck =
+                  employeeTypeCheck(param_CalculateHours[k].EmployeeID) !=
+                  "Field"
+                    ? 1
+                    : param_CalculateHours[k].Type != "Field"
+                    ? 1
+                    : 0;
                 await axios({
                   method: "post",
                   url: `/api/timesheets/calculate-hours`,
@@ -474,7 +484,7 @@ const Timesheet = () => {
                     EndDate: moment(selectedDate).endOf("week").toDate(),
                     ProjectID: parseInt(projectState),
                     EmployeeID: param_CalculateHours[k].EmployeeID,
-                    IsOfficer: param_CalculateHours[k].Type != "Field" ? 1 : 0,
+                    IsOfficer: typeCheck,
                   },
                 });
 
@@ -648,7 +658,7 @@ const Timesheet = () => {
     data.forEach(element => {
       if (
         employeeID == element.EmployeeID &&
-        (-1 == element.TaskID || -2 == element.TaskID || -3 == element.TaskID)
+        (element.TaskID == -1 || element.TaskID == -2 || element.TaskID == -3)
       ) {
         checkOfficer += 1;
         if (element.TaskID == -3) checkSubsistence++;
@@ -676,7 +686,7 @@ const Timesheet = () => {
     data2.forEach(element => {
       if (
         employeeID == element.EmployeeID &&
-        (-1 == element.TaskID || -2 == element.TaskID || -3 == element.TaskID)
+        (element.TaskID == -1 || element.TaskID == -2 || element.TaskID == -3)
       ) {
         checkOfficer += 1;
         if (element.TaskID == -3) checkSubsistence++;
@@ -1286,11 +1296,12 @@ const Timesheet = () => {
               if (elementDataView.EmployeeID == elementParam.EmployeeID)
                 employeeDuplicateCheck++;
             });
+            const typeCheck = employeeTypeCheck2(elementDataView.EmployeeID);
 
             if (!employeeDuplicateCheck) {
               param_CalculateHours.push({
                 EmployeeID: elementDataView.EmployeeID,
-                Type: employeeTypeCheck2(elementDataView.EmployeeID),
+                Type: typeCheck,
               });
             }
           });
@@ -1306,6 +1317,8 @@ const Timesheet = () => {
         let timesheetIDArray = [];
         for (let i = 0; i < tempDataView.length; i++) {
           let timesheetID = 0;
+          const typeCheck = employeeTypeCheck2(tempDataView[i].EmployeeID);
+          debugger;
           await axios({
             method: "post",
             url: `/api/timesheets`,
@@ -1333,7 +1346,7 @@ const Timesheet = () => {
                 tempDataView[i].TravelStart == tempDataView[i].TravelFinish
                   ? "12:00:00"
                   : moment(tempDataView[i].TravelFinish).format("LT"),
-              Type: employeeTypeCheck2(tempDataView[i].EmployeeID),
+              Type: typeCheck,
 
               /* --Params--
               ${body.ProjectID},
@@ -1383,6 +1396,14 @@ const Timesheet = () => {
 
             if (i == tempDataView.length - 1 && j == data2.length - 1) {
               for (let k = 0; k < param_CalculateHours.length; k++) {
+                const typeCheck =
+                  employeeTypeCheck(param_CalculateHours[k].EmployeeID) !=
+                  "Field"
+                    ? 1
+                    : param_CalculateHours[k].Type != "Field"
+                    ? 1
+                    : 0;
+
                 await axios({
                   method: "post",
                   url: `/api/timesheets/calculate-hours`,
@@ -1393,7 +1414,7 @@ const Timesheet = () => {
                     EndDate: moment(selectedDate).endOf("week").toDate(),
                     ProjectID: parseInt(projectState),
                     EmployeeID: param_CalculateHours[k].EmployeeID,
-                    IsOfficer: param_CalculateHours[k].Type != "Field" ? 1 : 0,
+                    IsOfficer: typeCheck,
                   },
                 });
                 if (k == param_CalculateHours.length - 1) {
@@ -1708,6 +1729,8 @@ const Timesheet = () => {
       {console.log("dataLaborHours")}
       {console.log(dataLaborHours)} 
       {console.log(now)}*/}
+
+      {console.log(data)}
 
       <Head>
         <title>Daily Report</title>
