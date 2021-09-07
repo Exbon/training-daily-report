@@ -85,7 +85,6 @@ const Timesheet = () => {
     { ProjectID: 0 },
   ]);
   const [stateNoAssigned, setStateNoAssigned] = useState([]);
-  const [checkState, setCheckState] = useState(true);
   const [cookies, setCookie, removeCookie] = useCookies();
   const [status, setStatus] = useState({
     cookies: {
@@ -167,26 +166,6 @@ const Timesheet = () => {
   const [selectedSummaryEmployee, setSelectedSummaryEmployee] = useState(
     () => 0
   );
-
-  const convertTaskNameToID = name => {
-    let task = dataTasks.find(task => name === task.Name);
-    if (task) {
-      return task.TaskID;
-    } else {
-      return 0;
-    }
-  };
-
-  const convertEmployeeNameToID = name => {
-    let employee = dataEmployees.find(
-      employee => name === employee.EmployeeName
-    );
-    if (employee) {
-      return employee.EmployeeID;
-    } else {
-      return 0;
-    }
-  };
 
   const now = new Date().toLocaleString({
     timeZone: "America/Los_Angeles",
@@ -1720,17 +1699,19 @@ const Timesheet = () => {
 
   return (
     <>
-      {/* {console.log("data")}
+      {console.log("data")}
       {console.log(data)}
       {console.log("dataView")}
       {console.log(dataView)}
       {console.log("dataTable")}
       {console.log(dataTable)}
       {console.log("dataLaborHours")}
-      {console.log(dataLaborHours)} 
-      {console.log(now)}*/}
+      {console.log(dataLaborHours)}
 
-      {console.log(data)}
+      {console.log("data2")}
+      {console.log(data2)}
+      {console.log("dataView2")}
+      {console.log(dataView2)}
 
       <Head>
         <title>Daily Report</title>
