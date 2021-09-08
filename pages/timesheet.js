@@ -1699,7 +1699,7 @@ const Timesheet = () => {
 
   return (
     <>
-      {console.log("data")}
+      {/* {console.log("data")}
       {console.log(data)}
       {console.log("dataView")}
       {console.log(dataView)}
@@ -1711,7 +1711,7 @@ const Timesheet = () => {
       {console.log("data2")}
       {console.log(data2)}
       {console.log("dataView2")}
-      {console.log(dataView2)}
+      {console.log(dataView2)} */}
 
       <Head>
         <title>Daily Report</title>
