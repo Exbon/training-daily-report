@@ -260,24 +260,31 @@ const Timesheet = () => {
           )}&projectID=${projectState}`,
           timeout: 15000, // 5 seconds timeout
           headers: {},
-        }).then(result => {
-          setData(result.data.result[0]);
-          setDataTable([
-            {
-              Id: id++,
-              EmployeeID: 0,
-              EmployeeName: "",
-              TaskID: -1,
-              StartTime: "07:00AM",
-              EndTime: "04:00PM",
-            },
-          ]);
-          dataEmployees = result.data.result[1];
-          dataTasks = result.data.result[2];
-          dataLatest = result.data.result[3];
-          setSelectedSummaryEmployee(0);
-          setSelectedInputEmployee(0);
-        });
+        })
+          .then(result => {
+            setData(result.data.result[0]);
+            setDataTable([
+              {
+                Id: id++,
+                EmployeeID: 0,
+                EmployeeName: "",
+                TaskID: -1,
+                StartTime: "07:00AM",
+                EndTime: "04:00PM",
+              },
+            ]);
+            dataEmployees = result.data.result[1];
+            dataTasks = result.data.result[2];
+            dataLatest = result.data.result[3];
+            setSelectedSummaryEmployee(0);
+            setSelectedInputEmployee(0);
+          })
+          .catch(err => {
+            alert(
+              "Loading Error.(GET /api/timesheets?selectedDate=${formatDate(selectedDate)}&projectID=${projectState}) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                err
+            );
+          });
       }
     };
     promises.push(fetchData());
@@ -300,6 +307,7 @@ const Timesheet = () => {
 
     let checkEmployeeName = data.find(element => element.EmployeeID == 0);
     let checkTaskName = data.find(element => element.TaskID == 0);
+    let checkTime0000PM = data.find(element => element.StartTime == "00:00:00");
 
     if (checkEmployeeName) {
       checkSave += 1;
@@ -884,16 +892,41 @@ const Timesheet = () => {
     }
   };
 
+  const alertTime00 = () => {
+    toast.error(
+      <div className={styles["alert__table__employee-input"]}>
+        The time{" "}
+        <strong>
+          CANNOT be "00:00 PM" <br />
+        </strong>
+        Please check the time again.
+      </div>,
+      {
+        position: toast.POSITION.TOP_CENTER,
+        hideProgressBar: true,
+      }
+    );
+  };
+
   const changeTime = (Id, when, format, timeValue) => {
     if (when === "start") {
       if (format === "hh") {
         setDataTable(
           [...dataTable].map(object => {
             if (object.Id === Id) {
-              return {
-                ...object,
-                StartTime: timeValue + object.StartTime.slice(2, 7),
-              };
+              const startTime = timeValue + object.StartTime.slice(2, 7);
+              if (startTime == "00:00PM") {
+                alertTime00();
+                return {
+                  ...object,
+                  StartTime: "00:00AM",
+                };
+              } else {
+                return {
+                  ...object,
+                  StartTime: startTime,
+                };
+              }
             } else return object;
           })
         );
@@ -901,13 +934,22 @@ const Timesheet = () => {
         setDataTable(
           [...dataTable].map(object => {
             if (object.Id === Id) {
-              return {
-                ...object,
-                StartTime:
-                  object.StartTime.slice(0, 3) +
-                  timeValue +
-                  object.StartTime.slice(5, 7),
-              };
+              const startTime =
+                object.StartTime.slice(0, 3) +
+                timeValue +
+                object.StartTime.slice(5, 7);
+              if (startTime == "00:00PM") {
+                alertTime00();
+                return {
+                  ...object,
+                  StartTime: "00:00AM",
+                };
+              } else {
+                return {
+                  ...object,
+                  StartTime: startTime,
+                };
+              }
             } else return object;
           })
         );
@@ -915,10 +957,19 @@ const Timesheet = () => {
         setDataTable(
           [...dataTable].map(object => {
             if (object.Id === Id) {
-              return {
-                ...object,
-                StartTime: object.StartTime.slice(0, 5) + timeValue,
-              };
+              const startTime = object.StartTime.slice(0, 5) + timeValue;
+              if (startTime == "00:00PM") {
+                alertTime00();
+                return {
+                  ...object,
+                  StartTime: "00:00AM",
+                };
+              } else {
+                return {
+                  ...object,
+                  StartTime: startTime,
+                };
+              }
             } else return object;
           })
         );
@@ -928,10 +979,19 @@ const Timesheet = () => {
         setDataTable(
           [...dataTable].map(object => {
             if (object.Id === Id) {
-              return {
-                ...object,
-                EndTime: timeValue + object.EndTime.slice(2, 7),
-              };
+              const endTime = timeValue + object.EndTime.slice(2, 7);
+              if (endTime == "00:00PM") {
+                alertTime00();
+                return {
+                  ...object,
+                  EndTime: "00:00AM",
+                };
+              } else {
+                return {
+                  ...object,
+                  EndTime: endTime,
+                };
+              }
             } else return object;
           })
         );
@@ -939,13 +999,22 @@ const Timesheet = () => {
         setDataTable(
           [...dataTable].map(object => {
             if (object.Id === Id) {
-              return {
-                ...object,
-                EndTime:
-                  object.EndTime.slice(0, 3) +
-                  timeValue +
-                  object.EndTime.slice(5, 7),
-              };
+              const endTime =
+                object.EndTime.slice(0, 3) +
+                timeValue +
+                object.EndTime.slice(5, 7);
+              if (endTime == "00:00PM") {
+                alertTime00();
+                return {
+                  ...object,
+                  EndTime: "00:00AM",
+                };
+              } else {
+                return {
+                  ...object,
+                  EndTime: endTime,
+                };
+              }
             } else return object;
           })
         );
@@ -953,10 +1022,19 @@ const Timesheet = () => {
         setDataTable(
           [...dataTable].map(object => {
             if (object.Id === Id) {
-              return {
-                ...object,
-                EndTime: object.EndTime.slice(0, 5) + timeValue,
-              };
+              const endTime = object.EndTime.slice(0, 5) + timeValue;
+              if (endTime == "00:00PM") {
+                alertTime00();
+                return {
+                  ...object,
+                  EndTime: "00:00AM",
+                };
+              } else {
+                return {
+                  ...object,
+                  EndTime: endTime,
+                };
+              }
             } else return object;
           })
         );
@@ -1712,6 +1790,7 @@ const Timesheet = () => {
       {console.log(data2)}
       {console.log("dataView2")}
       {console.log(dataView2)} */}
+      {console.log(dataTable)}
 
       <Head>
         <title>Daily Report</title>
