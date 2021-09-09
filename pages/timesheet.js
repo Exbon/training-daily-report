@@ -914,18 +914,10 @@ const Timesheet = () => {
           [...dataTable].map(object => {
             if (object.Id === Id) {
               const startTime = timeValue + object.StartTime.slice(2, 7);
-              if (startTime == "00:00PM") {
-                alertTime00();
-                return {
-                  ...object,
-                  StartTime: "00:00AM",
-                };
-              } else {
-                return {
-                  ...object,
-                  StartTime: startTime,
-                };
-              }
+              return {
+                ...object,
+                StartTime: startTime,
+              };
             } else return object;
           })
         );
@@ -937,18 +929,10 @@ const Timesheet = () => {
                 object.StartTime.slice(0, 3) +
                 timeValue +
                 object.StartTime.slice(5, 7);
-              if (startTime == "00:00PM") {
-                alertTime00();
-                return {
-                  ...object,
-                  StartTime: "00:00AM",
-                };
-              } else {
-                return {
-                  ...object,
-                  StartTime: startTime,
-                };
-              }
+              return {
+                ...object,
+                StartTime: startTime,
+              };
             } else return object;
           })
         );
@@ -957,18 +941,10 @@ const Timesheet = () => {
           [...dataTable].map(object => {
             if (object.Id === Id) {
               const startTime = object.StartTime.slice(0, 5) + timeValue;
-              if (startTime == "00:00PM") {
-                alertTime00();
-                return {
-                  ...object,
-                  StartTime: "00:00AM",
-                };
-              } else {
-                return {
-                  ...object,
-                  StartTime: startTime,
-                };
-              }
+              return {
+                ...object,
+                StartTime: startTime,
+              };
             } else return object;
           })
         );
@@ -979,18 +955,10 @@ const Timesheet = () => {
           [...dataTable].map(object => {
             if (object.Id === Id) {
               const endTime = timeValue + object.EndTime.slice(2, 7);
-              if (endTime == "00:00PM") {
-                alertTime00();
-                return {
-                  ...object,
-                  EndTime: "00:00AM",
-                };
-              } else {
-                return {
-                  ...object,
-                  EndTime: endTime,
-                };
-              }
+              return {
+                ...object,
+                EndTime: endTime,
+              };
             } else return object;
           })
         );
@@ -1002,18 +970,10 @@ const Timesheet = () => {
                 object.EndTime.slice(0, 3) +
                 timeValue +
                 object.EndTime.slice(5, 7);
-              if (endTime == "00:00PM") {
-                alertTime00();
-                return {
-                  ...object,
-                  EndTime: "00:00AM",
-                };
-              } else {
-                return {
-                  ...object,
-                  EndTime: endTime,
-                };
-              }
+              return {
+                ...object,
+                EndTime: endTime,
+              };
             } else return object;
           })
         );
@@ -1022,18 +982,10 @@ const Timesheet = () => {
           [...dataTable].map(object => {
             if (object.Id === Id) {
               const endTime = object.EndTime.slice(0, 5) + timeValue;
-              if (endTime == "00:00PM") {
-                alertTime00();
-                return {
-                  ...object,
-                  EndTime: "00:00AM",
-                };
-              } else {
-                return {
-                  ...object,
-                  EndTime: endTime,
-                };
-              }
+              return {
+                ...object,
+                EndTime: endTime,
+              };
             } else return object;
           })
         );
