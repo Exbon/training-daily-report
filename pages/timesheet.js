@@ -891,22 +891,6 @@ const Timesheet = () => {
     }
   };
 
-  const alertTime00 = () => {
-    toast.error(
-      <div className={styles["alert__table__employee-input"]}>
-        The time{" "}
-        <strong>
-          CANNOT be "00:00 PM" <br />
-        </strong>
-        Please check the time again.
-      </div>,
-      {
-        position: toast.POSITION.TOP_CENTER,
-        hideProgressBar: true,
-      }
-    );
-  };
-
   const changeTime = (Id, when, format, timeValue) => {
     if (when === "start") {
       if (format === "hh") {
