@@ -376,7 +376,6 @@ const Timesheet = () => {
         for (let i = 0; i < tempDataView.length; i++) {
           let timesheetID = 0;
           const typeCheck = employeeTypeCheck(tempDataView[i].EmployeeID);
-          debugger;
           await axios({
             method: "post",
             url: `/api/timesheets`,
@@ -1375,7 +1374,6 @@ const Timesheet = () => {
         for (let i = 0; i < tempDataView.length; i++) {
           let timesheetID = 0;
           const typeCheck = employeeTypeCheck2(tempDataView[i].EmployeeID);
-          debugger;
           await axios({
             method: "post",
             url: `/api/timesheets`,
@@ -1790,7 +1788,7 @@ const Timesheet = () => {
       {console.log(data2)}
       {console.log("dataView2")}
       {console.log(dataView2)} */}
-      {console.log(dataTable)}
+      {/* {console.log(dataTable)} */}
 
       <Head>
         <title>Daily Report</title>
@@ -2132,7 +2130,6 @@ const Timesheet = () => {
                                           )
                                         }
                                       >
-                                        <option value="00">00</option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
                                         <option value="03">03</option>
@@ -2217,7 +2214,6 @@ const Timesheet = () => {
                                           )
                                         }
                                       >
-                                        <option value="00">00</option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
                                         <option value="03">03</option>
