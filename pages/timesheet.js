@@ -345,25 +345,32 @@ const Timesheet = () => {
             ProjectID: projectState,
             Date: formatDate(selectedDate),
           },
-        }).then(result => {
-          param_CalculateHours = result.data.result.recordsets[0];
+        })
+          .then(result => {
+            param_CalculateHours = result.data.result.recordsets[0];
 
-          dataView.forEach(elementDataView => {
-            let employeeDuplicateCheck = 0;
-            param_CalculateHours.forEach(elementParam => {
-              if (elementDataView.EmployeeID == elementParam.EmployeeID)
-                employeeDuplicateCheck++;
-            });
-
-            if (!employeeDuplicateCheck) {
-              const typeCheck = employeeTypeCheck(elementDataView.EmployeeID);
-              param_CalculateHours.push({
-                EmployeeID: elementDataView.EmployeeID,
-                Type: typeCheck,
+            dataView.forEach(elementDataView => {
+              let employeeDuplicateCheck = 0;
+              param_CalculateHours.forEach(elementParam => {
+                if (elementDataView.EmployeeID == elementParam.EmployeeID)
+                  employeeDuplicateCheck++;
               });
-            }
+
+              if (!employeeDuplicateCheck) {
+                const typeCheck = employeeTypeCheck(elementDataView.EmployeeID);
+                param_CalculateHours.push({
+                  EmployeeID: elementDataView.EmployeeID,
+                  Type: typeCheck,
+                });
+              }
+            });
+          })
+          .catch(err => {
+            alert(
+              "Loading Error.(DELETE /api/timesheets) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                err
+            );
           });
-        });
 
         // await tempDataView.forEach(
         //   async (
@@ -418,10 +425,17 @@ const Timesheet = () => {
               '${body.Type}'
               */
             },
-          }).then(result => {
-            timesheetID = result.data.result.recordsets[0][0].TimesheetID;
-            timesheetIDArray.push(timesheetID);
-          });
+          })
+            .then(result => {
+              timesheetID = result.data.result.recordsets[0][0].TimesheetID;
+              timesheetIDArray.push(timesheetID);
+            })
+            .catch(err => {
+              alert(
+                "Loading Error.(POST /api/timesheets) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                  err
+              );
+            });
 
           for (let j = 0; j < data.length; j++) {
             if (data[j].EmployeeID == tempDataView[i].EmployeeID) {
@@ -447,6 +461,11 @@ const Timesheet = () => {
                         ${body.ProjectID}
                         */
                   },
+                }).catch(err => {
+                  alert(
+                    "Loading Error.(POST /api/timesheet-items) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                      err
+                  );
                 });
               }
             }
@@ -472,6 +491,11 @@ const Timesheet = () => {
                     EmployeeID: param_CalculateHours[k].EmployeeID,
                     IsOfficer: typeCheck,
                   },
+                }).catch(err => {
+                  alert(
+                    "Loading Error.(POST /api/timesheets/calculate-hours) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                      err
+                  );
                 });
 
                 if (k == param_CalculateHours.length - 1) {
@@ -485,6 +509,11 @@ const Timesheet = () => {
                         data: {
                           TimesheetID: parseInt(timesheetIDArray[l]),
                         },
+                      }).catch(err => {
+                        alert(
+                          "Loading Error.(POST /api/timesheets/calculate-daily-earning) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                            err
+                        );
                       });
                     }
                   };
@@ -536,6 +565,11 @@ const Timesheet = () => {
           Category: "Timesheet",
           Action: "update",
         },
+      }).catch(err => {
+        alert(
+          "Loading Error.(POST /api/log-daily-reports) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+            err
+        );
       });
     }
   };
@@ -556,31 +590,48 @@ const Timesheet = () => {
         Username: username,
         Password: password,
       },
-    }).then(response => {
-      if (response.data.result.recordset[0] !== undefined) {
-        setCookie("username", username, { path: "/", maxAge: 3600 * 24 * 30 });
-        setCookie("password", password, { path: "/", maxAge: 3600 * 24 * 30 });
-        setCookie("fullname", response.data.result.recordset[0].FullName, {
-          path: "/",
-          maxAge: 3600 * 24 * 30,
-        });
-        setCookie("employeeid", response.data.result.recordset[0].EmployeeID, {
-          path: "/",
-          maxAge: 3600 * 24 * 30,
-        });
-        setStatus(prevState => ({
-          ...prevState,
-          cookies: {
-            username: username,
-            password: password,
-            fullname: response.data.result.recordset[0].FullName,
-            employeeid: response.data.result.recordset[0].EmployeeID,
-          },
-        }));
-      } else {
-        alert("Login failed.");
-      }
-    });
+    })
+      .then(response => {
+        if (response.data.result.recordset[0] !== undefined) {
+          setCookie("username", username, {
+            path: "/",
+            maxAge: 3600 * 24 * 30,
+          });
+          setCookie("password", password, {
+            path: "/",
+            maxAge: 3600 * 24 * 30,
+          });
+          setCookie("fullname", response.data.result.recordset[0].FullName, {
+            path: "/",
+            maxAge: 3600 * 24 * 30,
+          });
+          setCookie(
+            "employeeid",
+            response.data.result.recordset[0].EmployeeID,
+            {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            }
+          );
+          setStatus(prevState => ({
+            ...prevState,
+            cookies: {
+              username: username,
+              password: password,
+              fullname: response.data.result.recordset[0].FullName,
+              employeeid: response.data.result.recordset[0].EmployeeID,
+            },
+          }));
+        } else {
+          alert("Login failed.");
+        }
+      })
+      .catch(err => {
+        alert(
+          "Loading Error.(POST /api/daily-report/signin) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+            err
+        );
+      });
   };
 
   const logout = () => {
@@ -1279,25 +1330,32 @@ const Timesheet = () => {
             ProjectID: projectState,
             Date: formatDate(selectedDate),
           },
-        }).then(result => {
-          param_CalculateHours = result.data.result.recordsets[0];
+        })
+          .then(result => {
+            param_CalculateHours = result.data.result.recordsets[0];
 
-          dataView2.forEach(elementDataView => {
-            let employeeDuplicateCheck = 0;
-            param_CalculateHours.forEach(elementParam => {
-              if (elementDataView.EmployeeID == elementParam.EmployeeID)
-                employeeDuplicateCheck++;
-            });
-            const typeCheck = employeeTypeCheck2(elementDataView.EmployeeID);
-
-            if (!employeeDuplicateCheck) {
-              param_CalculateHours.push({
-                EmployeeID: elementDataView.EmployeeID,
-                Type: typeCheck,
+            dataView2.forEach(elementDataView => {
+              let employeeDuplicateCheck = 0;
+              param_CalculateHours.forEach(elementParam => {
+                if (elementDataView.EmployeeID == elementParam.EmployeeID)
+                  employeeDuplicateCheck++;
               });
-            }
+              const typeCheck = employeeTypeCheck2(elementDataView.EmployeeID);
+
+              if (!employeeDuplicateCheck) {
+                param_CalculateHours.push({
+                  EmployeeID: elementDataView.EmployeeID,
+                  Type: typeCheck,
+                });
+              }
+            });
+          })
+          .catch(err => {
+            alert(
+              "Loading Error.(DELETE /api/timesheets) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                err
+            );
           });
-        });
 
         // await tempDataView.forEach(
         //   async (
@@ -1352,10 +1410,17 @@ const Timesheet = () => {
               '${body.Type}'
               */
             },
-          }).then(result => {
-            timesheetID = result.data.result.recordsets[0][0].TimesheetID;
-            timesheetIDArray.push(timesheetID);
-          });
+          })
+            .then(result => {
+              timesheetID = result.data.result.recordsets[0][0].TimesheetID;
+              timesheetIDArray.push(timesheetID);
+            })
+            .catch(err => {
+              alert(
+                "Loading Error.(POST /api/timesheets) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                  err
+              );
+            });
 
           for (let j = 0; j < data2.length; j++) {
             if (data2[j].EmployeeID == tempDataView[i].EmployeeID) {
@@ -1381,6 +1446,11 @@ const Timesheet = () => {
                         ${body.ProjectID}
                         */
                   },
+                }).catch(err => {
+                  alert(
+                    "Loading Error.(POST /api/timesheet-items) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                      err
+                  );
                 });
               }
             }
@@ -1407,7 +1477,13 @@ const Timesheet = () => {
                     EmployeeID: param_CalculateHours[k].EmployeeID,
                     IsOfficer: typeCheck,
                   },
+                }).catch(err => {
+                  alert(
+                    "Loading Error.(POST /api/timesheets/calculate-hours) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                      err
+                  );
                 });
+
                 if (k == param_CalculateHours.length - 1) {
                   const myFunction = async () => {
                     for (let l = 0; l < timesheetIDArray.length; l++) {
@@ -1419,6 +1495,11 @@ const Timesheet = () => {
                         data: {
                           TimesheetID: parseInt(timesheetIDArray[l]),
                         },
+                      }).catch(err => {
+                        alert(
+                          "Loading Error.(POST /api/timesheets/calculate-daily-earning) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                            err
+                        );
                       });
                     }
                   };
@@ -1470,6 +1551,11 @@ const Timesheet = () => {
           Category: "Timesheet",
           Action: "update",
         },
+      }).catch(err => {
+        alert(
+          "Loading Error.(POST /api/log-daily-reports) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+            err
+        );
       });
     }
   }, [dataView2]);
