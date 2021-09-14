@@ -187,7 +187,7 @@ const Timesheet = () => {
           axios({
             method: "post",
             url: `/api/daily-report/signin`,
-            timeout: 15000, // 15 seconds timeout
+            timeout: 1000000, // 15 seconds timeout
             headers: {},
             data: {
               Username: status.cookies.username,
@@ -258,7 +258,7 @@ const Timesheet = () => {
           url: `/api/timesheets?selectedDate=${formatDate(
             selectedDate
           )}&projectID=${projectState}`,
-          timeout: 15000, // 5 seconds timeout
+          timeout: 1000000, // 5 seconds timeout
           headers: {},
         })
           .then(result => {
@@ -339,7 +339,7 @@ const Timesheet = () => {
         await axios({
           method: "delete",
           url: `/api/timesheets`,
-          timeout: 15000, // 3 seconds timeout
+          timeout: 1000000, // 3 seconds timeout
           headers: {},
           data: {
             ProjectID: projectState,
@@ -379,7 +379,7 @@ const Timesheet = () => {
           await axios({
             method: "post",
             url: `/api/timesheets`,
-            timeout: 15000, // 3 seconds timeout
+            timeout: 1000000, // 3 seconds timeout
             headers: {},
             data: {
               ProjectID: projectState,
@@ -429,7 +429,7 @@ const Timesheet = () => {
                 await axios({
                   method: "post",
                   url: `/api/timesheet-items`,
-                  timeout: 15000, // 3 seconds timeout
+                  timeout: 1000000, // 3 seconds timeout
                   headers: {},
                   data: {
                     TimesheetID: parseInt(timesheetID),
@@ -463,7 +463,7 @@ const Timesheet = () => {
                 await axios({
                   method: "post",
                   url: `/api/timesheets/calculate-hours`,
-                  timeout: 15000, // 5 seconds timeout
+                  timeout: 1000000, // 5 seconds timeout
                   headers: {},
                   data: {
                     StartDate: moment(selectedDate).startOf("isoweek").toDate(),
@@ -480,7 +480,7 @@ const Timesheet = () => {
                       axios({
                         method: "post",
                         url: `/api/timesheets/calculate-daily-earning`,
-                        timeout: 15000, // 5 seconds timeout
+                        timeout: 1000000, // 5 seconds timeout
                         headers: {},
                         data: {
                           TimesheetID: parseInt(timesheetIDArray[l]),
@@ -527,7 +527,7 @@ const Timesheet = () => {
       axios({
         method: "post",
         url: `/api/log-daily-reports`,
-        timeout: 15000, // 5 seconds timeout
+        timeout: 1000000, // 5 seconds timeout
         headers: {},
         data: {
           EmployeeID: status.cookies.employeeid,
@@ -550,7 +550,7 @@ const Timesheet = () => {
     await axios({
       method: "post",
       url: `/api/daily-report/signin`,
-      timeout: 15000, // 5 seconds timeout
+      timeout: 1000000, // 5 seconds timeout
       headers: {},
       data: {
         Username: username,
@@ -1273,7 +1273,7 @@ const Timesheet = () => {
         await axios({
           method: "delete",
           url: `/api/timesheets`,
-          timeout: 15000, // 3 seconds timeout
+          timeout: 1000000, // 3 seconds timeout
           headers: {},
           data: {
             ProjectID: projectState,
@@ -1313,7 +1313,7 @@ const Timesheet = () => {
           await axios({
             method: "post",
             url: `/api/timesheets`,
-            timeout: 15000, // 3 seconds timeout
+            timeout: 1000000, // 3 seconds timeout
             headers: {},
             data: {
               ProjectID: projectState,
@@ -1363,7 +1363,7 @@ const Timesheet = () => {
                 await axios({
                   method: "post",
                   url: `/api/timesheet-items`,
-                  timeout: 15000, // 3 seconds timeout
+                  timeout: 1000000, // 3 seconds timeout
                   headers: {},
                   data: {
                     TimesheetID: parseInt(timesheetID),
@@ -1398,7 +1398,7 @@ const Timesheet = () => {
                 await axios({
                   method: "post",
                   url: `/api/timesheets/calculate-hours`,
-                  timeout: 15000, // 5 seconds timeout
+                  timeout: 1000000, // 5 seconds timeout
                   headers: {},
                   data: {
                     StartDate: moment(selectedDate).startOf("isoweek").toDate(),
@@ -1414,7 +1414,7 @@ const Timesheet = () => {
                       axios({
                         method: "post",
                         url: `/api/timesheets/calculate-daily-earning`,
-                        timeout: 15000, // 5 seconds timeout
+                        timeout: 1000000, // 5 seconds timeout
                         headers: {},
                         data: {
                           TimesheetID: parseInt(timesheetIDArray[l]),
@@ -1461,7 +1461,7 @@ const Timesheet = () => {
       axios({
         method: "post",
         url: `/api/log-daily-reports`,
-        timeout: 15000, // 5 seconds timeout
+        timeout: 1000000, // 5 seconds timeout
         headers: {},
         data: {
           EmployeeID: status.cookies.employeeid,
