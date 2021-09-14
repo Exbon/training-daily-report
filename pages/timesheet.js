@@ -472,13 +472,6 @@ const Timesheet = () => {
 
             if (i == tempDataView.length - 1 && j == data.length - 1) {
               for (let k = 0; k < param_CalculateHours.length; k++) {
-                const typeCheck =
-                  employeeTypeCheck(param_CalculateHours[k].EmployeeID) !=
-                  "Field"
-                    ? 1
-                    : param_CalculateHours[k].Type != "Field"
-                    ? 1
-                    : 0;
                 await axios({
                   method: "post",
                   url: `/api/timesheets/calculate-hours`,
@@ -489,7 +482,6 @@ const Timesheet = () => {
                     EndDate: moment(selectedDate).endOf("week").toDate(),
                     ProjectID: parseInt(projectState),
                     EmployeeID: param_CalculateHours[k].EmployeeID,
-                    IsOfficer: typeCheck,
                   },
                 }).catch(err => {
                   alert(
@@ -1457,14 +1449,6 @@ const Timesheet = () => {
 
             if (i == tempDataView.length - 1 && j == data2.length - 1) {
               for (let k = 0; k < param_CalculateHours.length; k++) {
-                const typeCheck =
-                  employeeTypeCheck(param_CalculateHours[k].EmployeeID) !=
-                  "Field"
-                    ? 1
-                    : param_CalculateHours[k].Type != "Field"
-                    ? 1
-                    : 0;
-
                 await axios({
                   method: "post",
                   url: `/api/timesheets/calculate-hours`,
@@ -1475,7 +1459,6 @@ const Timesheet = () => {
                     EndDate: moment(selectedDate).endOf("week").toDate(),
                     ProjectID: parseInt(projectState),
                     EmployeeID: param_CalculateHours[k].EmployeeID,
-                    IsOfficer: typeCheck,
                   },
                 }).catch(err => {
                   alert(

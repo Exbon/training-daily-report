@@ -17,8 +17,7 @@ const calculateHoursHandler = (req, res) => {
           '${body.StartDate}',
           '${body.EndDate}',
           ${body.ProjectID},
-          ${body.EmployeeID},
-          '${body.IsOfficer}'
+          ${body.EmployeeID}
           `;
 
           /* --Params--
@@ -26,7 +25,6 @@ const calculateHoursHandler = (req, res) => {
           @endDate date = '1970-01-01', 
           @projectID int = 0,
           @employeeID int = 0,
-          @isOfficer bit = 0
           */
 
           request.query(query, (err, recordset) => {
