@@ -2020,9 +2020,7 @@ const Timesheet = () => {
                             }
                             disabled={true}
                           >
-                            <option value="0">
-                              --------Choose Employee--------
-                            </option>
+                            <option value="0">----Choose Employee----</option>
                             {dataEmployees.map(element => {
                               return (
                                 <option
