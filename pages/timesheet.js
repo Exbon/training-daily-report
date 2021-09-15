@@ -302,12 +302,25 @@ const Timesheet = () => {
   }
 
   const handleSaveTimesheetBtn = async () => {
+    for (let i = 0; i < dataView.length; i++) {
+      let checkIncludeEmployee = 0;
+      for (let j = 0; j < dataEmployees.length; j++) {
+        if (dataView[i].EmployeeID == dataEmployees[j].EmployeeID)
+          checkIncludeEmployee++;
+      }
+      if (checkIncludeEmployee == 0) {
+        alert(
+          "CANNOT SAVE (Not assigned employee).\nPlease contact IT. (Hyunmyung Kim 201-554-6666)\n"
+        );
+        return null;
+      }
+    }
+
     let promises = [];
     let param_CalculateHours = [];
 
     let checkEmployeeName = data.find(element => element.EmployeeID == 0);
     let checkTaskName = data.find(element => element.TaskID == 0);
-    let checkTime0000PM = data.find(element => element.StartTime == "00:00:00");
 
     if (checkEmployeeName) {
       checkSave += 1;
@@ -1280,6 +1293,21 @@ const Timesheet = () => {
   useEffect(() => {
     if (typeof dataView2 == "undefined") return;
     else if (dataView2.init == "first") return;
+
+    for (let i = 0; i < dataView2.length; i++) {
+      let checkIncludeEmployee = 0;
+      for (let j = 0; j < dataEmployees.length; j++) {
+        if (dataView2[i].EmployeeID == dataEmployees[j].EmployeeID)
+          checkIncludeEmployee++;
+      }
+      if (checkIncludeEmployee == 0) {
+        alert(
+          "CANNOT SAVE (Not assigned employee).\nPlease contact IT. (Hyunmyung Kim 201-554-6666)\n"
+        );
+        return;
+      }
+    }
+
     let promises = [];
     let param_CalculateHours = [];
 
@@ -1794,6 +1822,10 @@ const Timesheet = () => {
       {console.log("dataView2")}
       {console.log(dataView2)} */}
       {/* {console.log(dataTable)} */}
+      {/* {console.log("dataEmployees")}
+      {console.log(dataEmployees)}
+      {console.log("dataView")}
+      {console.log(dataView)} */}
 
       <Head>
         <title>Daily Report</title>
