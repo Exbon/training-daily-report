@@ -439,21 +439,19 @@ const Task = () => {
       // return null;
       return (
         <div className={styles["table__req-start-date-wrapper"]}>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <DatePicker
-              disableToolbar
-              variant="inline"
-              value={value === null ? row.original.StartDate : value}
-              format="MM/dd/yyyy"
-              autoOk={true}
-              className={
-                value === null
-                  ? styles["table__req-start-date-wrapper__date-picker"]
-                  : styles["table__req-start-date-wrapper__date-picker-request"]
-              }
-              onChange={selectReqStartDate}
-            />
-          </MuiPickersUtilsProvider>
+          <DatePicker
+            disableToolbar
+            variant="inline"
+            value={value === null ? row.original.StartDate : value}
+            format="MM/dd/yyyy"
+            autoOk={true}
+            className={
+              value === null
+                ? styles["table__req-start-date-wrapper__date-picker"]
+                : styles["table__req-start-date-wrapper__date-picker-request"]
+            }
+            onChange={selectReqStartDate}
+          />
         </div>
         /* {value === null ? row.original.StartDate : value} */
       );
@@ -461,23 +459,19 @@ const Task = () => {
       // return null;
       return (
         <div className={styles["table__req-finish-date-wrapper"]}>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <DatePicker
-              disableToolbar
-              variant="inline"
-              value={value === null ? row.original.FinishDate : value}
-              format="MM/dd/yyyy"
-              autoOk={true}
-              className={
-                value === null
-                  ? styles["table__req-finish-date-wrapper__date-picker"]
-                  : styles[
-                      "table__req-finish-date-wrapper__date-picker-request"
-                    ]
-              }
-              onChange={selectReqFinishDate}
-            />
-          </MuiPickersUtilsProvider>
+          <DatePicker
+            disableToolbar
+            variant="inline"
+            value={value === null ? row.original.FinishDate : value}
+            format="MM/dd/yyyy"
+            autoOk={true}
+            className={
+              value === null
+                ? styles["table__req-finish-date-wrapper__date-picker"]
+                : styles["table__req-finish-date-wrapper__date-picker-request"]
+            }
+            onChange={selectReqFinishDate}
+          />
         </div>
       );
     } else if (id === "PreviousWork") {
@@ -1822,23 +1816,25 @@ const Task = () => {
                       ))}
                     </thead>
                     <tbody {...getTableBodyProps()}>
-                      {rows.map((row, i) => {
-                        prepareRow(row);
-                        return (
-                          <tr
-                            {...row.getRowProps()}
-                            className={styles["table__row"]}
-                          >
-                            {row.cells.map(cell => {
-                              return (
-                                <td {...cell.getCellProps()}>
-                                  {cell.render("Cell")}
-                                </td>
-                              );
-                            })}
-                          </tr>
-                        );
-                      })}
+                      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        {rows.map((row, i) => {
+                          prepareRow(row);
+                          return (
+                            <tr
+                              {...row.getRowProps()}
+                              className={styles["table__row"]}
+                            >
+                              {row.cells.map(cell => {
+                                return (
+                                  <td {...cell.getCellProps()}>
+                                    {cell.render("Cell")}
+                                  </td>
+                                );
+                              })}
+                            </tr>
+                          );
+                        })}
+                      </MuiPickersUtilsProvider>
                     </tbody>
                   </table>
                 </div>
