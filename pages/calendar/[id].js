@@ -19,8 +19,8 @@ const calendar = () => {
   const handleEventPositioned = info => {
     info.el.setAttribute(
       "data-tip",
-      "Project ID : " +
-        info.event._def.extendedProps.ProjectID +
+      "Job Number : " +
+        info.event._def.extendedProps.JobNumber +
         "<br/>" +
         "Project Group : " +
         info.event._def.extendedProps.ProjectGroup +
