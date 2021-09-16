@@ -264,6 +264,7 @@
   color: rgb(116, 100, 110);
   padding-top: 4px;
   padding-bottom: 4px;
+  font-size: 14px;
 }
 
 .table__req-start-date-wrapper__date-picker-request input {
@@ -272,6 +273,7 @@
   font-weight: 500;
   padding-top: 4px;
   padding-bottom: 4px;
+  font-size: 14px;
 }
 
 .table__req-finish-date-wrapper {
@@ -290,6 +292,7 @@
   color: rgb(116, 100, 110);
   padding-top: 4px;
   padding-bottom: 4px;
+  font-size: 14px;
 }
 
 .table__req-finish-date-wrapper__date-picker-request input {
@@ -298,6 +301,7 @@
   font-weight: 500;
   padding-top: 4px;
   padding-bottom: 4px;
+  font-size: 14px;
 }
 
 .table__previous-work-wrapper {
@@ -673,6 +677,14 @@
     max-height: 250px;
     overflow: auto;
   }
+
+  .table__req-start-date-wrapper__date-picker input {
+    font-size: 0.8rem;
+  }
+
+  .table__req-start-date-wrapper__date-picker-request input {
+    font-size: 0.8rem;
+  }
 }
 
 @media screen and (max-width: 602px) {
@@ -755,6 +767,13 @@
 
   .table__current-work-wrapper__input__current-work {
     width: 33px !important;
+    font-size: 0.8rem;
+  }
+  .table__req-start-date-wrapper__date-picker input {
+    font-size: 0.8rem;
+  }
+
+  .table__req-start-date-wrapper__date-picker-request input {
     font-size: 0.8rem;
   }
 }

@@ -436,51 +436,47 @@ const Task = () => {
         </div>
       );
     } else if (id === "ReqStartDate") {
+      // return null;
       return (
         <div className={styles["table__req-start-date-wrapper"]}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <ThemeProvider theme={themeForWorkDate}>
-              <DatePicker
-                disableToolbar
-                variant="inline"
-                value={value === null ? row.original.StartDate : value}
-                format="MM/dd/yyyy"
-                autoOk={true}
-                className={
-                  value === null
-                    ? styles["table__req-start-date-wrapper__date-picker"]
-                    : styles[
-                        "table__req-start-date-wrapper__date-picker-request"
-                      ]
-                }
-                onChange={selectReqStartDate}
-              />
-            </ThemeProvider>
+            <DatePicker
+              disableToolbar
+              variant="inline"
+              value={value === null ? row.original.StartDate : value}
+              format="MM/dd/yyyy"
+              autoOk={true}
+              className={
+                value === null
+                  ? styles["table__req-start-date-wrapper__date-picker"]
+                  : styles["table__req-start-date-wrapper__date-picker-request"]
+              }
+              onChange={selectReqStartDate}
+            />
           </MuiPickersUtilsProvider>
         </div>
         /* {value === null ? row.original.StartDate : value} */
       );
     } else if (id === "ReqFinishDate") {
+      // return null;
       return (
         <div className={styles["table__req-finish-date-wrapper"]}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <ThemeProvider theme={themeForWorkDate}>
-              <DatePicker
-                disableToolbar
-                variant="inline"
-                value={value === null ? row.original.FinishDate : value}
-                format="MM/dd/yyyy"
-                autoOk={true}
-                className={
-                  value === null
-                    ? styles["table__req-finish-date-wrapper__date-picker"]
-                    : styles[
-                        "table__req-finish-date-wrapper__date-picker-request"
-                      ]
-                }
-                onChange={selectReqFinishDate}
-              />
-            </ThemeProvider>
+            <DatePicker
+              disableToolbar
+              variant="inline"
+              value={value === null ? row.original.FinishDate : value}
+              format="MM/dd/yyyy"
+              autoOk={true}
+              className={
+                value === null
+                  ? styles["table__req-finish-date-wrapper__date-picker"]
+                  : styles[
+                      "table__req-finish-date-wrapper__date-picker-request"
+                    ]
+              }
+              onChange={selectReqFinishDate}
+            />
           </MuiPickersUtilsProvider>
         </div>
       );
