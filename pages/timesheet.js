@@ -110,6 +110,21 @@ const Timesheet = () => {
     return new Date(d.setDate(diff));
   };
 
+  const getMondayOfMinusOneday = d => {
+    d = new Date(d);
+    d.setDate(d.getDate() - 1);
+    var day = d.getDay(),
+      diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
+    return new Date(d.setDate(diff));
+  };
+
+  const getTuesday = d => {
+    d = new Date(d);
+    var day = d.getDay(),
+      diff = d.getDate() - day + (day == 0 ? -5 : 2); // adjust when day is sunday
+    return new Date(d.setDate(diff));
+  };
+
   const date_diff_indays = (date1, date2) => {
     return Math.floor(
       (Date.UTC(date2.getFullYear(), date2.getMonth(), date2.getDate()) -
@@ -127,9 +142,10 @@ const Timesheet = () => {
       "/" +
       toStr.split("/")[2].slice(0, 4);
     const dateFromStr = new Date(newStr);
-    const sundayOfSelected = getMonday(dateFromStr);
-    const sundayOfToday = getMonday(now);
-    if (date_diff_indays(sundayOfToday, sundayOfSelected) >= 0) {
+    const mondayOfSelected = getMonday(dateFromStr);
+    const mondayOfTodayMinusOneday = getMondayOfMinusOneday(now);
+    debugger;
+    if (date_diff_indays(mondayOfTodayMinusOneday, mondayOfSelected) >= 0) {
       afterSundayCheck = true;
       return true;
     } else {
