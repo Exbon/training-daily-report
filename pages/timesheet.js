@@ -144,7 +144,6 @@ const Timesheet = () => {
     const dateFromStr = new Date(newStr);
     const mondayOfSelected = getMonday(dateFromStr);
     const mondayOfTodayMinusOneday = getMondayOfMinusOneday(now);
-    debugger;
     if (date_diff_indays(mondayOfTodayMinusOneday, mondayOfSelected) >= 0) {
       afterSundayCheck = true;
       return true;
