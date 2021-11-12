@@ -113,7 +113,7 @@ const Timesheet = () => {
   const columns = useMemo(
     () => [
       {
-        Header: " ", //Delete Timesheet
+        Header: " ",
         accessor: "TimesheetID",
         width: 30,
       },
