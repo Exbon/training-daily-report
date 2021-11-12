@@ -1410,7 +1410,7 @@ const Task = () => {
             style={{ display: "none" }}
           />
 
-          {promiseInProgress || !projectState || !(data.length > 0) ? (
+          {promiseInProgress || !projectState ? (
             <div
               style={{
                 marginTop: "30px",
