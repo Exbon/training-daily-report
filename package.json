@@ -2,9 +2,9 @@
   "name": "api-routes-rest",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next -p 3001",
+    "dev": "next -p 7001",
     "build": "next build",
-    "start": "next start -p 5001"
+    "start": "next start -p 7010"
   },
   "dependencies": {
     "@date-io/date-fns": "^1.3.13",
