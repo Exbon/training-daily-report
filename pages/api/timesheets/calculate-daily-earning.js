@@ -13,7 +13,7 @@ const calculateDailyEarningHandler = (req, res) => {
           }
           const request = new mssql.Request();
 
-          const query = `EXEC [Hammer].[dbo].[CalculateDailyEarning]
+          const query = `EXEC [Training].[dbo].[CalculateDailyEarning]
           '${body.TimesheetID}'
           `;
 

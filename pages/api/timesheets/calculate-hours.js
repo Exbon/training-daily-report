@@ -13,7 +13,7 @@ const calculateHoursHandler = (req, res) => {
           }
           const request = new mssql.Request();
 
-          const query = `EXEC [Hammer].[dbo].[CalculateHours]
+          const query = `EXEC [Training].[dbo].[CalculateHours]
           '${body.StartDate}',
           '${body.EndDate}',
           ${body.ProjectID},
