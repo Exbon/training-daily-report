@@ -3,17 +3,17 @@ const dbserver = require("../../dbConfig.js");
 
 const projectDateChangeRequestHandler = (req, res) => {
   const { method, body } = req;
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     switch (method) {
       case "POST":
-        mssql.connect(dbserver.dbConfig, (err) => {
+        mssql.connect(dbserver.dbConfig, err => {
           if (err) {
             console.error(err);
             return resolve();
           }
           const request = new mssql.Request();
 
-          const query = `EXEC [Hammer].[dbo].[ProjectDateChangeRequest_Insert]
+          const query = `EXEC [Training].[dbo].[ProjectDateChangeRequest_Insert]
           ${body.EmployeeID}, ${body.ProjectID}, "${body.RequestType}", ${body.RequestID}, '${body.StartDate}', '${body.EndDate}', '${body.Reason}'`;
           /* --Params--
           	@employeeID int,

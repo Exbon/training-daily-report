@@ -16,7 +16,7 @@ const timesheetHandler = (req, res) => {
           const selectedDate = req.query.selectedDate;
           const projectID = req.query.projectID;
 
-          const query = `EXEC [Hammer].[dbo].[Timesheet_SelectByDate]
+          const query = `EXEC [Training].[dbo].[Timesheet_SelectByDate]
           '${selectedDate}',  ${projectID}`;
 
           request.query(query, (err, recordset) => {
@@ -40,7 +40,7 @@ const timesheetHandler = (req, res) => {
           }
           const request = new mssql.Request();
 
-          const query = `EXEC [Hammer].[dbo].[Timesheet_Insert]
+          const query = `EXEC [Training].[dbo].[Timesheet_Insert]
           ${body.ProjectID},
           '${body.Date}',
           ${body.EmployeeID},
@@ -87,7 +87,7 @@ const timesheetHandler = (req, res) => {
           }
           const request = new mssql.Request();
 
-          const query = `EXEC [Hammer].[dbo].[Timesheet_Delete]
+          const query = `EXEC [Training].[dbo].[Timesheet_Delete]
           ${body.ProjectID}, '${body.Date}'`;
           /* --Params--
           @projectID int,

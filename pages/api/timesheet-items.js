@@ -13,7 +13,7 @@ const timesheetItemHandler = (req, res) => {
           }
           const request = new mssql.Request();
 
-          const query = `EXEC [Hammer].[dbo].[TimesheetItems_Insert]
+          const query = `EXEC [Training].[dbo].[TimesheetItems_Insert]
           ${body.TimesheetID},
           ${body.TaskID},
           '${body.Start}',

@@ -16,7 +16,7 @@ const projectTasksProgressHandler = (req, res) => {
           const selectedDate = req.query.selectedDate;
           const projectID = req.query.projectID;
 
-          const query = `EXEC [Hammer].[dbo].[ProjectTaskProgress_SelectByDate]
+          const query = `EXEC [Training].[dbo].[ProjectTaskProgress_SelectByDate]
           '${selectedDate}', ${projectID} `;
 
           request.query(query, (err, recordset) => {
@@ -40,7 +40,7 @@ const projectTasksProgressHandler = (req, res) => {
           }
           const request = new mssql.Request();
 
-          const query = `EXEC [Hammer].[dbo].[ProjectTaskProgress_Insert]
+          const query = `EXEC [Training].[dbo].[ProjectTaskProgress_Insert]
           ${body.TaskID}, "${body.Date}", ${body.WorkCompleted}`;
           /* --Params--
           	@taskID	int,
@@ -69,7 +69,7 @@ const projectTasksProgressHandler = (req, res) => {
           }
           const request = new mssql.Request();
 
-          const query = `EXEC [Hammer].[dbo].[ProjectTaskProgress_DeleteAndInsert]
+          const query = `EXEC [Training].[dbo].[ProjectTaskProgress_DeleteAndInsert]
             ${body.TaskID}, '${body.Date}', '${body.WorkCompleted}'`;
           /* --Params--
             @taskID int,

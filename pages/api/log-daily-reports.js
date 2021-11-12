@@ -13,7 +13,7 @@ const logDailyReportsHandler = (req, res) => {
           }
           const request = new mssql.Request();
 
-          const query = `EXEC [Hammer].[dbo].[LogDailyReport_Insert]
+          const query = `EXEC [Training].[dbo].[LogDailyReport_Insert]
           ${body.EmployeeID}, ${body.ProjectID}, "${body.Date}", "${body.Category}", "${body.Action}"`;
           /* --Params--
           	@employeeID int,

@@ -15,7 +15,7 @@ const projectNoWorkHandler = (req, res) => {
 
           const projectID = req.query.projectID;
 
-          const query = `EXEC [Hammer].[dbo].[ProjectNoWork_SelectByProjectID]
+          const query = `EXEC [Training].[dbo].[ProjectNoWork_SelectByProjectID]
           ${projectID} `;
 
           request.query(query, (err, recordset) => {
